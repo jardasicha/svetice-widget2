@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:text="06:12"
             android:textColor="#FF5DCAA5"
-            android:textSize="18sp" />
+            android:textSize="22sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -33,23 +33,23 @@
             android:layout_height="wrap_content"
             android:text="07:42"
             android:textColor="#FF888888"
-            android:textSize="13sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="+4"
             android:textColor="#FFF09595"
-            android:textSize="10sp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp" />
+            android:textSize="22sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="07:46"
             android:textColor="#FFF0997B"
-            android:textSize="18sp" />
+            android:textSize="22sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -64,23 +64,23 @@
             android:layout_height="wrap_content"
             android:text="08:54"
             android:textColor="#FF888888"
-            android:textSize="13sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="+12"
             android:textColor="#FFF09595"
-            android:textSize="10sp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp" />
+            android:textSize="22sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="09:06"
             android:textColor="#FFF0997B"
-            android:textSize="18sp" />
+            android:textSize="22sp" />
     </LinearLayout>
 
 </LinearLayout>

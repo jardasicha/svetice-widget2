@@ -1,173 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     android:background="#FF141414"
     android:paddingStart="20dp"
-    android:paddingEnd="20dp"
+    android:paddingEnd="12dp"
     android:paddingTop="6dp"
-    android:paddingBottom="6dp"
-    android:columnCount="4"
-    android:rowCount="3"
-    android:useDefaultMargins="false">
+    android:paddingBottom="6dp">
 
-    <!-- Řádek 1: vlak včas -->
-    <TextView
-        android:id="@+id/t1_planned"
-        android:text="06:12"
-        android:textColor="#FF5DCAA5"
-        android:textSize="22sp"
-        android:gravity="start|center_vertical"
-        android:layout_row="0"
-        android:layout_column="0"
+    <!-- Levá část: 4 sloupce × 3 řádky s daty -->
+    <GridLayout
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1" />
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:columnCount="4"
+        android:rowCount="3"
+        android:useDefaultMargins="false">
 
-    <TextView
-        android:id="@+id/t1_delay"
-        android:text=""
-        android:textColor="#FFFF8A3D"
-        android:textSize="22sp"
-        android:gravity="center"
-        android:layout_row="0"
-        android:layout_column="1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1" />
+        <!-- Řádek 1 -->
+        <TextView
+            android:id="@+id/t1_planned"
+            android:text="06:12"
+            android:textColor="#FF5DCAA5"
+            android:textSize="22sp"
+            android:gravity="start|center_vertical"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1" />
 
-    <TextView
-        android:id="@+id/t1_new"
-        android:text=""
-        android:textColor="#FF5DCAA5"
-        android:textSize="22sp"
-        android:gravity="center"
-        android:layout_row="0"
-        android:layout_column="2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1" />
+        <TextView
+            android:id="@+id/t1_delay"
+            android:text=""
+            android:textColor="#FFFF8A3D"
+            android:textSize="22sp"
+            android:gravity="center"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1" />
 
-    <TextView
-        android:id="@+id/t1_eta"
-        android:text="3 min"
-        android:textColor="#FFAAAAAA"
-        android:textSize="22sp"
-        android:gravity="end|center_vertical"
-        android:layout_row="0"
-        android:layout_column="3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1" />
+        <TextView
+            android:id="@+id/t1_new"
+            android:text=""
+            android:textColor="#FF5DCAA5"
+            android:textSize="22sp"
+            android:gravity="center"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1" />
 
-    <!-- Řádek 2: zpoždění 4 min -->
-    <TextView
-        android:id="@+id/t2_planned"
-        android:text="07:42"
-        android:textColor="#FF888888"
-        android:textSize="22sp"
-        android:gravity="start|center_vertical"
-        android:layout_row="1"
-        android:layout_column="0"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1" />
+        <TextView
+            android:id="@+id/t1_eta"
+            android:text="3 min"
+            android:textColor="#FFAAAAAA"
+            android:textSize="22sp"
+            android:gravity="end|center_vertical"
+            android:layout_row="0"
+            android:layout_column="3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1" />
 
-    <TextView
-        android:id="@+id/t2_delay"
-        android:text="+4"
-        android:textColor="#FFFF8A3D"
-        android:textSize="22sp"
-        android:gravity="center"
-        android:layout_row="1"
-        android:layout_column="1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1" />
+        <!-- Řádek 2 -->
+        <TextView
+            android:id="@+id/t2_planned"
+            android:text="07:42"
+            android:textColor="#FF888888"
+            android:textSize="22sp"
+            android:gravity="start|center_vertical"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1" />
 
-    <TextView
-        android:id="@+id/t2_new"
-        android:text="07:46"
-        android:textColor="#FF5DCAA5"
-        android:textSize="22sp"
-        android:gravity="center"
-        android:layout_row="1"
-        android:layout_column="2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1" />
+        <TextView
+            android:id="@+id/t2_delay"
+            android:text="+4"
+            android:textColor="#FFFF8A3D"
+            android:textSize="22sp"
+            android:gravity="center"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1" />
 
-    <TextView
-        android:id="@+id/t2_eta"
-        android:text="93 min"
-        android:textColor="#FFAAAAAA"
-        android:textSize="22sp"
-        android:gravity="end|center_vertical"
-        android:layout_row="1"
-        android:layout_column="3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1" />
+        <TextView
+            android:id="@+id/t2_new"
+            android:text="07:46"
+            android:textColor="#FF5DCAA5"
+            android:textSize="22sp"
+            android:gravity="center"
+            android:layout_row="1"
+            android:layout_column="2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1" />
 
-    <!-- Řádek 3: zpoždění 12 min -->
-    <TextView
-        android:id="@+id/t3_planned"
-        android:text="08:54"
-        android:textColor="#FF888888"
-        android:textSize="22sp"
-        android:gravity="start|center_vertical"
-        android:layout_row="2"
-        android:layout_column="0"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1" />
+        <TextView
+            android:id="@+id/t2_eta"
+            android:text="93 min"
+            android:textColor="#FFAAAAAA"
+            android:textSize="22sp"
+            android:gravity="end|center_vertical"
+            android:layout_row="1"
+            android:layout_column="3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1" />
 
-    <TextView
-        android:id="@+id/t3_delay"
-        android:text="+12"
-        android:textColor="#FFFF8A3D"
-        android:textSize="22sp"
-        android:gravity="center"
-        android:layout_row="2"
-        android:layout_column="1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1" />
+        <!-- Řádek 3 -->
+        <TextView
+            android:id="@+id/t3_planned"
+            android:text="08:54"
+            android:textColor="#FF888888"
+            android:textSize="22sp"
+            android:gravity="start|center_vertical"
+            android:layout_row="2"
+            android:layout_column="0"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1" />
 
-    <TextView
-        android:id="@+id/t3_new"
-        android:text="09:06"
-        android:textColor="#FF5DCAA5"
-        android:textSize="22sp"
-        android:gravity="center"
-        android:layout_row="2"
-        android:layout_column="2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1" />
+        <TextView
+            android:id="@+id/t3_delay"
+            android:text="+12"
+            android:textColor="#FFFF8A3D"
+            android:textSize="22sp"
+            android:gravity="center"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1" />
 
-    <TextView
-        android:id="@+id/t3_eta"
-        android:text="165 min"
-        android:textColor="#FFAAAAAA"
-        android:textSize="22sp"
-        android:gravity="end|center_vertical"
-        android:layout_row="2"
-        android:layout_column="3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1" />
+        <TextView
+            android:id="@+id/t3_new"
+            android:text="09:06"
+            android:textColor="#FF5DCAA5"
+            android:textSize="22sp"
+            android:gravity="center"
+            android:layout_row="2"
+            android:layout_column="2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1" />
 
-</GridLayout>
+        <TextView
+            android:id="@+id/t3_eta"
+            android:text="165 min"
+            android:textColor="#FFAAAAAA"
+            android:textSize="22sp"
+            android:gravity="end|center_vertical"
+            android:layout_row="2"
+            android:layout_column="3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1" />
+    </GridLayout>
+
+    <!-- Pravá část: 3 ikony pod sebou -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginStart="12dp">
+
+        <ImageView
+            android:id="@+id/btn_settings"
+            android:layout_width="22dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_settings"
+            android:scaleType="fitCenter"
+            android:padding="1dp" />
+
+        <ImageView
+            android:id="@+id/btn_refresh"
+            android:layout_width="22dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_refresh"
+            android:scaleType="fitCenter"
+            android:padding="1dp" />
+
+        <ImageView
+            android:id="@+id/btn_toggle"
+            android:layout_width="22dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_power_on"
+            android:scaleType="fitCenter"
+            android:padding="1dp" />
+    </LinearLayout>
+
+</LinearLayout>

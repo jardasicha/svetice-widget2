@@ -16,11 +16,18 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="true"
+            android:label="Nastavení" />
+
         <receiver
             android:name=".TrainWidgetProvider"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="cz.svetice.widget.ACTION_REFRESH" />
+                <action android:name="cz.svetice.widget.ACTION_TOGGLE" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"

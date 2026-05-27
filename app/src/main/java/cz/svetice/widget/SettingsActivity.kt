@@ -27,17 +27,21 @@ class SettingsActivity : AppCompatActivity() {
 
         val daysRow = findViewById<LinearLayout>(R.id.days_row)
         for (i in 0..6) {
-            val b = Button(this).apply {
-                text = dayLabels[i]
-                textSize = 14f
-                layoutParams = LinearLayout.LayoutParams(
-                    0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f
-                ).apply { setMargins(4, 0, 4, 0) }
-                setOnClickListener {
-                    days[i] = !days[i]
-                    refreshDayButtons(daysRow)
-                }
-            }
+           val b = Button(this).apply {
+    text = dayLabels[i]
+    textSize = 14f
+    isAllCaps = false
+    minWidth = 0
+    minimumWidth = 0
+    setPadding(0, 16, 0, 16)
+    layoutParams = LinearLayout.LayoutParams(
+        0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f
+    ).apply { setMargins(4, 0, 4, 0) }
+    setOnClickListener {
+        days[i] = !days[i]
+        refreshDayButtons(daysRow)
+    }
+}
             daysRow.addView(b)
         }
         refreshDayButtons(daysRow)

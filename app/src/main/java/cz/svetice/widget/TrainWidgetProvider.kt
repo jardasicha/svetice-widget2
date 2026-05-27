@@ -15,24 +15,44 @@ class TrainWidgetProvider : AppWidgetProvider() {
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
     ) {
-        for (id in appWidgetIds) {
-            updateWidget(context, appWidgetManager, id)
-        }
+        for (id in appWidgetIds) updateWidget(context, appWidgetManager, id)
+        RefreshScheduler.schedule(context)
+    }
+
+    override fun onEnabled(context: Context) {
+        super.onEnabled(context)
+        RefreshScheduler.schedule(context)
+    }
+
+    override fun onDisabled(context: Context) {
+        super.onDisabled(context)
+        RefreshScheduler.cancel(context)
     }
 
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
         when (intent.action) {
             ACTION_REFRESH -> {
-                // Manuální refresh - zatím jen překresli, ve fázi 3 se sem napojí volání API
+                // Manuální refresh — překresli widget (později i API volání)
                 updateAll(context)
             }
-            ACTION_TOGGLE -> {
-                // Přepni stav v SharedPreferences a překresli
-                val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-                val current = prefs.getBoolean(KEY_ENABLED, true)
-                prefs.edit().putBoolean(KEY_ENABLED, !current).apply()
+            ACTION_TICK -> {
+                // Plánovaný tick z AlarmManageru — překresli a naplánuj další
                 updateAll(context)
+                RefreshScheduler.schedule(context)
+            }
+            ACTION_TOGGLE -> {
+                // Přepneme override podle aktuálního stavu
+                val current = Settings.isActive(context)
+                Settings.setOverride(context, !current)
+                updateAll(context)
+                RefreshScheduler.schedule(context)
+            }
+            ACTION_REFRESH_FROM_SETTINGS -> {
+                // Po uložení nastavení smaž override (vrať se k oknu) a naplánuj
+                Settings.setOverride(context, null)
+                updateAll(context)
+                RefreshScheduler.schedule(context)
             }
         }
     }
@@ -40,8 +60,8 @@ class TrainWidgetProvider : AppWidgetProvider() {
     companion object {
         const val ACTION_REFRESH = "cz.svetice.widget.ACTION_REFRESH"
         const val ACTION_TOGGLE = "cz.svetice.widget.ACTION_TOGGLE"
-        const val PREFS = "widget_prefs"
-        const val KEY_ENABLED = "enabled"
+        const val ACTION_TICK = "cz.svetice.widget.ACTION_TICK"
+        const val ACTION_REFRESH_FROM_SETTINGS = "cz.svetice.widget.ACTION_REFRESH_FROM_SETTINGS"
 
         fun updateAll(context: Context) {
             val mgr = AppWidgetManager.getInstance(context)
@@ -66,12 +86,10 @@ class TrainWidgetProvider : AppWidgetProvider() {
             views.setTextViewText(R.id.t3_new, "09:06")
             views.setTextViewText(R.id.t3_eta, "165 min")
 
-            // Toggle ikona podle stavu v prefs
-            val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-            val enabled = prefs.getBoolean(KEY_ENABLED, true)
+            // Toggle ikona reflektuje SKUTEČNÝ stav (okno AND override)
             views.setImageViewResource(
                 R.id.btn_toggle,
-                if (enabled) R.drawable.ic_power_on else R.drawable.ic_power_off
+                if (Settings.isActive(context)) R.drawable.ic_power_on else R.drawable.ic_power_off
             )
 
             // Klik na ozubené kolečko → SettingsActivity
@@ -84,20 +102,18 @@ class TrainWidgetProvider : AppWidgetProvider() {
             )
             views.setOnClickPendingIntent(R.id.btn_settings, settingsPi)
 
-            // Klik na refresh → broadcast ACTION_REFRESH
-            val refreshIntent = Intent(context, TrainWidgetProvider::class.java).apply {
-                action = ACTION_REFRESH
-            }
+            // Refresh
+            val refreshIntent = Intent(context, TrainWidgetProvider::class.java)
+                .apply { action = ACTION_REFRESH }
             val refreshPi = PendingIntent.getBroadcast(
                 context, 1, refreshIntent,
                 PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
             )
             views.setOnClickPendingIntent(R.id.btn_refresh, refreshPi)
 
-            // Klik na toggle → broadcast ACTION_TOGGLE
-            val toggleIntent = Intent(context, TrainWidgetProvider::class.java).apply {
-                action = ACTION_TOGGLE
-            }
+            // Toggle
+            val toggleIntent = Intent(context, TrainWidgetProvider::class.java)
+                .apply { action = ACTION_TOGGLE }
             val togglePi = PendingIntent.getBroadcast(
                 context, 2, toggleIntent,
                 PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
